@@ -1,0 +1,27 @@
+version: '2.4'
+
+services:
+  frontend:
+    build: 
+      context: ./resume-ai-frontend
+      dockerfile: Dockerfile 
+    container_name: resume-frontend
+    ports:
+      - "3002:80"
+    networks:
+      - resume-network
+
+  backend:
+    build: ./resume-ai-backend
+    container_name: rb
+    ports:
+      - "8000:8000"
+    networks:
+      - resume-network
+
+networks:
+  resume-network:
+    driver: bridge
+
+
+
